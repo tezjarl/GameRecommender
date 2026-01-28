@@ -9,12 +9,12 @@ var rabbitPassword = builder.AddParameter("rabbitPassword", secret: true);
 builder.AddRabbitMQ("rabbitmq", rabbitUser, rabbitPassword);
 
 var apiService = builder.AddProject<Projects.GameRecommender_ApiService>("apiservice")
-    .WithHttpHealthCheck("/health");
+	.WithHttpHealthCheck("/health");
 
 builder.AddProject<Projects.GameRecommender_Web>("webfrontend")
-    .WithExternalHttpEndpoints()
-    .WithHttpHealthCheck("/health")
-    .WithReference(apiService)
-    .WaitFor(apiService);
+	.WithExternalHttpEndpoints()
+	.WithHttpHealthCheck("/health")
+	.WithReference(apiService)
+	.WaitFor(apiService);
 
 builder.Build().Run();

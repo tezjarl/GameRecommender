@@ -14,10 +14,10 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddProblemDetails(options =>
 {
-    options.CustomizeProblemDetails = ctx =>
-    {
-        ctx.ProblemDetails.Extensions["traceId"] = ctx.HttpContext.TraceIdentifier;
-    };
+	options.CustomizeProblemDetails = ctx =>
+	{
+		ctx.ProblemDetails.Extensions["traceId"] = ctx.HttpContext.TraceIdentifier;
+	};
 });
 
 var app = builder.Build();
@@ -28,8 +28,8 @@ app.UseStatusCodePages();
 
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
-    app.MapScalarApiReference();
+	app.MapOpenApi();
+	app.MapScalarApiReference();
 }
 
 
